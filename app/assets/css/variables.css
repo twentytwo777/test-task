@@ -2,5 +2,10 @@
   --background: #FBFBFB;
   --foreground: #000000;
 
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+
   --accent-foreground: #0029FF;
+
+  --radius: 3px;
 }
