@@ -1,5 +1,17 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import svgLoader from 'vite-svg-loader';
+
 export default defineNuxtConfig({
+  css: [
+    '~/assets/css/variables.css',
+    '~/assets/css/main.css',
+  ],
+  vite: {
+    plugins: [
+      svgLoader({
+        defaultImport: 'component'
+      })
+    ]
+  },
+  devtools: { enabled: false },
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true }
-})
+});
