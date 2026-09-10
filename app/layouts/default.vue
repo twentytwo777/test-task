@@ -1,5 +1,5 @@
-<style>
-.template {
+<style scoped>
+.default {
   width: 100dvw;
   min-height: 100dvh;
 
@@ -8,18 +8,21 @@
   flex-direction: column;
 }
 
-.template > * {
-  width: calc(100% - 12%);
+.default > * {
+  /* 40px is padding for left/right side (20px for each) */
+  width: min(calc(100dvw - 40px), 1060px);
 }
 
-.template main {
+.default main {
   flex: 1;
-  padding-top: 18px;
+
+  display: flex;
+  flex-direction: column;
 }
 </style>
 
 <template>
-  <div class="template">
+  <div class="default">
     <AppHeader />
     <main>
       <slot />
