@@ -1,8 +1,23 @@
-<script setup>
+<script setup lang="ts">
+import { useViewStore } from '~/stores/view';
+
 import ReloadIcon from '~/assets/img/reload.svg';
 import SearchIcon from '~/assets/img/search.svg';
 import RowIcon from '~/assets/img/list/row.svg';
 import BlockIcon from '~/assets/img/list/block.svg';
+
+import type { ViewModes } from '~/stores/view';
+
+type ViewMode = {
+  id: ViewModes;
+  icon: SVGComponent;
+};
+
+const viewModes: ViewMode[] = [
+  { id: 'row', icon: <SVGComponent><never>RowIcon }, // typescript moment..
+  { id: 'block', icon: <SVGComponent><never>BlockIcon }
+];
+const viewStore = useViewStore();
 </script>
 
 <style scoped>
@@ -184,11 +199,15 @@ header .header-submenu {
         <button class="portals-item">Mos.ru</button>
       </div>
       <div class="submenu-view">
-        <button class="view-button">
-          <RowIcon />
-        </button>
-        <button class="view-button">
-          <BlockIcon />
+        <button v-for="mode in viewModes"
+          :key="mode.id"
+          :class="[
+            'view-button',
+            { 'active pointer-none': viewStore.mode === mode.id }
+          ]"
+          @click="viewStore.setMode(mode.id)"
+        >
+          <component :is="mode.icon" />
         </button>
       </div>
     </div>
