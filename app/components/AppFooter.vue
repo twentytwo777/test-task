@@ -8,7 +8,6 @@ footer {
   justify-content: center;
 
   column-gap: 24px;
-  padding: 18px 0;
 
   background-color: var(--background);
 }
