@@ -28,10 +28,6 @@ footer .pagination-button.active {
   color: var(--accent-foreground);
 }
 
-footer .pagination-button.active {
-  pointer-events: none;
-}
-
 footer .pagination-separator {
   user-select: none;
   -webkit-user-select: none;
