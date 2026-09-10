@@ -36,9 +36,7 @@ footer .pagination-separator {
 
 <template>
   <footer>
-    <button class="pagination-button">1</button>
-    <button class="pagination-button">2</button>
-    <button class="pagination-button">3</button>
+    <button v-for="i in 4" class="pagination-button">{{ i }}</button>
     <span class="pagination-separator">...</span>
     <button class="pagination-button">200</button>
   </footer>
