@@ -12,7 +12,14 @@ export default defineNuxtConfig({
       })
     ]
   },
-  modules: ['@pinia/nuxt'],
+  modules: [
+    'vite-svg-loader',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate',
+  ],
   devtools: { enabled: false },
+  typescript: {
+    typeCheck: 'build'
+  },
   compatibilityDate: '2025-07-15',
 });
