@@ -28,13 +28,11 @@ header {
   top: 0;
 
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 40px);
   grid-template-columns: 1fr minmax(0, 320px);
 
-  align-items: center;
-
-  gap: 15px var(--column-gap);
-  padding: 15px 0;
+  gap: 26px var(--column-gap);
+  padding: 36px 0 28px;
 
   background-color: var(--background);
 }
@@ -119,7 +117,7 @@ header .header-submenu {
 
   grid-column: span 2;
 
-  padding-top: 15px;
+  padding-top: 26px;
   border-top: 1px solid #E5E5E5;
 }
 
@@ -156,10 +154,11 @@ header .header-submenu {
 @media (max-width: 576px) {
   header {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: initial;
     align-items: initial;
 
     row-gap: 20px;
+    padding: 36px 0 17px;
   }
 
   header .header-title {
@@ -175,7 +174,7 @@ header .header-submenu {
   }
 
   header .header-submenu {
-    grid-area: initial;
+    grid-column: initial;
   }
 }
 </style>
