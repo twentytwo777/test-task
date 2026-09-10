@@ -24,7 +24,6 @@ const viewStore = useViewStore();
   grid-template-columns: repeat(auto-fit, minmax(calc(
     (min(var(--content-size), var(--content-dynamic-size)) / 2) - 10px
   ), 1fr));
-  /* grid-template-columns: repeat(auto-fit, minmax(calc(50% - 10px), 1fr)); */
 }
 
 .content .card {
