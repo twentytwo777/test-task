@@ -12,6 +12,15 @@ export default defineNuxtConfig({
       })
     ]
   },
+  nitro: {
+    typescript: {
+      tsConfig: {
+        compilerOptions: {
+          noUncheckedIndexedAccess: false,
+        },
+      },
+    },
+  },
   modules: [
     'vite-svg-loader',
     '@pinia/nuxt',
