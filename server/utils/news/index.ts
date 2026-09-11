@@ -1,0 +1,1 @@
+export * as mos from '~~/server/utils/news/mos.ru';
