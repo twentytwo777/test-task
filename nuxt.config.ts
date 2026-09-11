@@ -8,9 +8,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       svgLoader({
-        defaultImport: 'component'
-      })
-    ]
+        defaultImport: 'component',
+      }),
+    ],
   },
   nitro: {
     typescript: {
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: false },
   typescript: {
-    typeCheck: 'build'
+    typeCheck: 'build',
   },
   compatibilityDate: '2025-07-15',
 });
