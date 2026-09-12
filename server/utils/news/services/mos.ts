@@ -1,13 +1,11 @@
 import Parser from 'rss-parser';
 import { BaseService } from '~~/server/utils/news/services/base';
 
-type ItemCustomFields = {
+export class Service extends BaseService<{}, {
     media?: Enclosure[];
-};
-
-export class Service extends BaseService {
+}> {
     constructor() {
-        super('https://mos.ru/rss', new Parser<{}, ItemCustomFields>({
+        super('https://mos.ru/rss', new Parser({
             customFields: {
                 item: [
                     ['enclosure', 'media', { keepArray: true }]
@@ -17,7 +15,7 @@ export class Service extends BaseService {
     };
 
     public async fetch() {
-        const feed = await this.parse();
+        const feed = await this.parseURL();
         const items: FeedResult = [];
         for (let i = 0; i < feed.items.length; i++) {
             const item = feed.items[i];
@@ -30,7 +28,7 @@ export class Service extends BaseService {
                 cover: item.media[item.media.length - 1].$.url,
                 title: item.title,
                 subtitle: item.contentSnippet,
-                timestamp: Date.parse(item.isoDate)
+                timestamp: this.parseDate(item.isoDate)
             });
         };
 
