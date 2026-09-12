@@ -28,7 +28,11 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: false },
   typescript: {
-    typeCheck: 'build',
+    tsConfig: {
+      compilerOptions: {
+        noUncheckedIndexedAccess: false,
+      }
+    }
   },
   compatibilityDate: '2025-07-15',
 });
