@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import { capitalize } from 'vue';
+const store = useFeedStore();
 
-const route = useRoute();
-const portals = route.query.portals
+const { data } = useFetch('/api/feed/portals');
 const selected = ref<Set<string>>(
-  typeof portals === 'string' ? stringToSet(portals) : new Set() 
+  typeof store.portals === 'string' ? stringToSet(store.portals) : new Set() 
 );
 const isAllActive = computed(() => selected.value.size === 0);
-const { data } = useFetch('/api/feed/portals');
-
-const navigate = (portals?: string): void => {
-  navigateTo({ query: { ...route.query, portals } }, { replace: true });
-};
 
 const reset = (): void => {
   selected.value.clear();
-  navigate();
+  store.setPortals();
 };
 
 const isActive = (id: string): boolean => {
@@ -25,12 +19,14 @@ const isActive = (id: string): boolean => {
 const toggle = (id: string): void => {
   const isExist = selected.value.has(id);
   if (isExist && selected.value.size === 1) {
-    return reset();
+    return store.setPortals();
   };
 
   isExist ? selected.value.delete(id) : selected.value.add(id);
-  navigate(setToString(selected.value));
+  store.setPortals(setToString(selected.value));
 };
+
+defineExpose({ reset })
 </script>
 
 <style scoped>
@@ -42,12 +38,12 @@ const toggle = (id: string): void => {
 
 <template>
   <div class="submenu-portals">
-    <IndexHeaderSubmenuPortalsItem value="Все" :is-active="isAllActive" @click="reset" />
+    <IndexHeaderSubmenuPortalsItem value="Все" :isActive="isAllActive" :disabled="isAllActive" @click="reset" />
     <IndexHeaderSubmenuPortalsItem
       v-for="{ id, name } in data"
       :key="id"
-      :value="capitalize(name)"
-      :is-active="isActive(id)"
+      :value="name"
+      :isActive="isActive(id)"
       @click="toggle(id)"
     />
   </div>

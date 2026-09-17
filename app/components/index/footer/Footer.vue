@@ -1,32 +1,25 @@
 <script setup lang="ts">
+const store = useFeedStore();
 const props = defineProps<{
   totalPages: number;
 }>();
-const store = useFeedStore();
-const { setPage } = store;
-
 const limit = 6;
 const size = limit - 2;
 
 const getPageNumber = (n: number): number => {
-  const max = clamp(1, store.page, props.totalPages - size);
-  return Math.max(0, max - 2) + n;
-};
-
-const isSeparator = (n: number): boolean => {
-  const isGreaterThanLimit = props.totalPages >= limit;
-  const isPenultimate = n === limit - 1;
-  const isClamped = store.page < (props.totalPages - size);
-  return isGreaterThanLimit && isPenultimate && isClamped;
+  const page = clamp(1, store.page, props.totalPages - size);
+  return Math.max(0, page - 2) + n;
 };
 
 const isActive = (page: number): boolean => {
-  return page === store.page;
+  return store.page === page;
 };
 </script>
 
 <style scoped>
 footer {
+  width: 100%;
+
   position: sticky;
   bottom: 0;
 
@@ -42,13 +35,25 @@ footer {
 
 <template>
   <footer>
-    <template v-for="n in Math.min(limit - 1, totalPages)" :key="getPageNumber(n)">
-      <IndexFooterPaginationSeparator v-if="isSeparator(n)" />
+    <template v-for="n in clamp(0, totalPages, size)" :key="n">
       <IndexFooterPaginationButton
-        v-else
         :value="getPageNumber(n)"
         :isActive="isActive(getPageNumber(n))"
+        @click="store.setPage(getPageNumber(n))"
       />
     </template>
+    <template v-if="totalPages >= limit">
+      <IndexFooterPaginationSeparator v-if="store.page < (totalPages - size)" />
+      <IndexFooterPaginationButton v-else
+        :value="totalPages - 1"
+        :isActive="isActive(totalPages - 1)"
+        @click="store.setPage(totalPages - 1)"
+      />
+    </template>
+    <IndexFooterPaginationButton v-if="totalPages >= limit - 1"
+      :value="totalPages"
+      :isActive="isActive(totalPages)"
+      @click="store.setPage(totalPages)"
+    />
   </footer>
 </template>

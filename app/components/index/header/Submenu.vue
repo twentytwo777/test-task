@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const portalsRef = useTemplateRef('portals');
+
+defineExpose({ portalsRef });
+</script>
+
 <style scoped>
 .header-submenu {
   display: flex;
@@ -19,7 +25,7 @@
 
 <template>
   <div class="header-submenu">
-    <IndexHeaderSubmenuPortals />
+    <IndexHeaderSubmenuPortals ref="portals" />
     <IndexHeaderSubmenuView />
   </div>
 </template>

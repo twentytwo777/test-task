@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps < {
+import { capitalize } from 'vue';
+
+defineProps<{
   value: string;
   isActive?: boolean;
 }>();
@@ -18,5 +20,7 @@ defineProps < {
 </style>
 
 <template>
-  <button :class="['portals-item', { 'active': isActive }]">{{ value }}</button>
+  <button class="portals-item" :class="{ 'active': isActive }">
+    {{ capitalize(value) }}
+  </button>
 </template>

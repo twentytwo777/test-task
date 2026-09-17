@@ -1,25 +1,28 @@
 export const useFeedStore = defineStore('feed', () => {
-  const searchQuery = useRouteQuery<string | undefined>('q');
-  const page = ref<number>(1);
-  const query = ref<string | undefined>(searchQuery.value);
-  const portals = ref<string | undefined>();
+  const pageParam = useRouteParams('page');
+  const page = computed(() => Number(pageParam.value));
+  const query = useRouteQuery<string | undefined>('q');
+  const portals = useRouteQuery<string | undefined>('portals');
   const setPage = (newPage: number): void => {
-    page.value = newPage;
+    pageParam.value = `${Math.max(1, newPage)}`;
   };
 
-  const setQuery = (newQuery?: string) => {
+  const setQuery = (newQuery?: string): void => {
+    setPage(1);
     query.value = newQuery;
   };
 
-  const setPortals = (newPortals?: string) => {
-    portals.value = newPortals
+  const setPortals = (newPortals?: string): void => {
+    setPage(1);
+    portals.value = newPortals;
   };
 
   const reset = () => {
-    page.value = 1;
-    query.value = undefined;
-    portals.value = undefined;
+    setPage(1);
+    setQuery();
+    setPortals();
   };
 
-  return { page, query, setPage, setQuery, setPortals, reset };
+  setPage(1);
+  return { page, query, portals, setPage, setQuery, setPortals, reset };
 });

@@ -34,28 +34,6 @@ const emit = defineEmits<{
   background-color: #FFFFFF;
 }
 
-.title-reload svg {
-  transition: 0.3s transform;
-}
-
-.title-reload:hover svg {
-  transform: rotate(45deg);
-}
-
-.title-reload.loading svg {
-  animation: loading 1s linear infinite;
-}
-
-@keyframes loading {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @media (max-width: 576px) {
   .header-title {
     justify-content: space-between;

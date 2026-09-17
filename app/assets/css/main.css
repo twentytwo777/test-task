@@ -27,3 +27,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
 }
+
+button:disabled {
+  pointer-events: none;
+}

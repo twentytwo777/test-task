@@ -1,9 +1,5 @@
 <style scoped>
 #default {
-  --layout-padding: 20px;
-  --content-size: 1060px;
-  --content-dynamic-size: calc(100dvw - (var(--layout-padding) * 2));
-
   width: 100dvw;
   min-height: 100dvh;
 
@@ -18,25 +14,14 @@
     result: 154px
   */
   grid-template-rows: 154px 1fr 40px;
-  justify-content: center;
-}
-
-#default > * {
-  width: min(var(--content-dynamic-size), var(--content-size));
-}
-
-/* #default main {
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
+  justify-items: center;
 }
 
 @media (max-width: 576px) {
   #default {
     grid-template-rows: auto 1fr 40px;
   }
-} */
+}
 </style>
 
 <template>

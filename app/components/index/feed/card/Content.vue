@@ -55,11 +55,6 @@ defineProps<{
     width: calc(100% - var(--padding));
   }
 
-  .card-content .content-title,
-  .card-content .content-subtitle {
-    -webkit-line-clamp: initial;
-  }
-
   .feed-list[data-view-mode="row"] .content-href {
     display: block;
   }

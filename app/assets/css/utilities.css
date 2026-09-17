@@ -1,3 +1,11 @@
+.content-container {
+  --layout-padding: 20px;
+  --content-size: 1060px;
+  --content-dynamic-size: calc(100dvw - (var(--layout-padding) * 2));
+
+  width: min(var(--content-dynamic-size), var(--content-size));
+}
+
 .line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;

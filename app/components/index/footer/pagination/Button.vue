@@ -23,11 +23,5 @@ defineProps<{
 </style>
 
 <template>
-  <NuxtLink
-    :to="`/${value}`"
-    class="pagination-button"
-    :class="[{ 'active pointer-none': isActive }]"
-  >
-    {{ value }}
-  </NuxtLink>
+  <button class="pagination-button" :class="{ 'active pointer-none': isActive }">{{ value }}</button>
 </template>

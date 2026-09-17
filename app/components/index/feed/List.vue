@@ -9,8 +9,6 @@ defineProps<{
 .feed-list {
   --gap: 20px;
   --card-max-height: calc(((var(--content-size) / 2) - 10px) / 2);
-  
-  flex: 1;
 
   display: grid;
 
@@ -28,6 +26,13 @@ defineProps<{
   grid-template-columns: repeat(auto-fill, minmax(var(--column-size), 1fr));
 }
 
+.feed-list:has(> .empty) {
+  height: 100%;
+  padding: 0;
+  align-content: initial;
+  grid-template-columns: 1fr;
+}
+
 @media (max-width: 576px) {
   .feed-list,
   .feed-list[data-view-mode="block"] {
@@ -42,7 +47,7 @@ defineProps<{
 
 <template>
   <div class="feed-list" :data-view-mode="viewStore.mode">
-    <!-- !!ADD KEY!! -->
-    <IndexFeedCard v-for="item in items" :item="item" />
+    <IndexFeedCard v-if="items.length" v-for="item in items" :item="item" />
+    <IndexFeedEmpty v-else />
   </div>
 </template>
