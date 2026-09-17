@@ -1,4 +1,4 @@
-type GetFeedPageResult = {
+interface GetFeedPageResult {
   items: FeedItem[];
   totalPages: number;
 };

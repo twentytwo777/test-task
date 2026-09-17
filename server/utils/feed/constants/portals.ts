@@ -1,6 +1,8 @@
+import { StandardService } from '~~/server/utils/feed/services/standard';
+
 import type { BaseService } from '~~/server/utils/feed/services/base';
 
-type Portal = {
+interface Portal {
   name: string;
   service: BaseService;
 };
@@ -11,11 +13,11 @@ export type PortalKeys = keyof Portals;
 export const PORTALS = {
   mos: {
     name: 'mos.ru',
-    service: new Mos()
+    service: new StandardService('https://mos.ru/rss')
   },
   vedomosti: {
     name: 'vedomosti.ru',
-    service: new Vedomosti()
+    service: new StandardService('https://www.vedomosti.ru/rss/articles.xml')
   }
 } as const satisfies Record<string, Portal>;
 

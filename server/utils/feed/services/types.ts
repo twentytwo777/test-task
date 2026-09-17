@@ -1,5 +1,5 @@
 import type Parser from 'rss-parser';
 
-export type Enclosure = {
+export interface EnclosureWrapper {
   $: Parser.Enclosure;
 };
