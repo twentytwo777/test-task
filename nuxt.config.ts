@@ -8,9 +8,7 @@ export default defineNuxtConfig({
   ],
   vite: {
     plugins: [
-      svgLoader({
-        defaultImport: 'component',
-      }),
+      svgLoader(),
     ],
   },
   nitro: {

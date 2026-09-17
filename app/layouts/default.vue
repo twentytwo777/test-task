@@ -1,8 +1,7 @@
 <style scoped>
-.default {
+#default {
   --layout-padding: 20px;
   --content-size: 1060px;
-  /* 40px is padding for left/right side (20px for each) */
   --content-dynamic-size: calc(100dvw - (var(--layout-padding) * 2));
 
   width: 100dvw;
@@ -22,11 +21,11 @@
   justify-content: center;
 }
 
-.default > * {
+#default > * {
   width: min(var(--content-dynamic-size), var(--content-size));
 }
 
-.default main {
+/* #default main {
   height: 100%;
 
   display: flex;
@@ -34,18 +33,14 @@
 }
 
 @media (max-width: 576px) {
-  .default {
+  #default {
     grid-template-rows: auto 1fr 40px;
   }
-}
+} */
 </style>
 
 <template>
-  <div class="default">
-    <AppHeader />
-    <main>
-      <slot />
-    </main>
-    <AppFooter />
+  <div id="default">
+    <slot />
   </div>
 </template>
