@@ -1,25 +1,28 @@
 import { z } from 'zod';
 
+const portalSchema = z.string()
+  .transform((arg) => arg.split(','))
+  .pipe(z.array(z.enum(PORTALS_KEYS)))
+  .refine((array) => new Set(array).size === array.length, {
+    error: 'Portals must be unique'
+  });
+
 const querySchema = z.object({
-    q: z.coerce.string().min(1).optional(),
-    page: z.coerce.number().positive().optional().default(1),
+  page: z.coerce.number().positive().optional().default(1),
+  query: z.coerce.string().min(3).optional(),
+  portals: portalSchema.optional()
 }).strict();
 
 export default defineEventHandler(async (event) => {
-    const result = await getValidatedQuery(event, (q) => querySchema.safeParse(q));
-    if (!result.success) {
-        throw createError({ status: 400, message: result.error.issues[0].message });
-    };
-    const { page, q } = result.data;
+  const result = await getValidatedQuery(event, (q) => querySchema.safeParse(q));
+  if (!result.success) {
+    throw createError({ status: 400, message: result.error.issues[0].message });
+  };
 
-    let feeds = await fetchFeeds();
-    if (q !== undefined) {
-        const desired = q.toLowerCase();
-        feeds = feeds.filter(({ title, subtitle }) => (
-            title.toLowerCase().includes(desired) || subtitle.toLowerCase().includes(desired)
-        ));
-    };
-
-    const offset = (page - 1) * LIMIT;
-    return { items: feeds.slice(offset, offset + LIMIT), total: feeds.length };
+  const { page, query, portals } = result.data;
+  const config = useRuntimeConfig(event);
+  return getFeedPage(
+    page, query, config.feed.limit,
+    ...portals !== undefined ? portals : []
+  );
 });
