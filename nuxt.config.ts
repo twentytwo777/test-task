@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     'vite-svg-loader',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate',
+    '@vueuse/nuxt',
   ],
   devtools: { enabled: false },
   typescript: {
