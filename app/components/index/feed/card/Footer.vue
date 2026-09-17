@@ -1,13 +1,9 @@
 <script setup lang="ts">
-const dateFormat = new Intl.DateTimeFormat(
-  'ru-RU',
-  { day: '2-digit', month: '2-digit', year: 'numeric' }
-);
-
-defineProps<{
-  origin: string;
+const props = defineProps<{
+  hostname: string;
   timestamp: number;
 }>();
+const href = 'https://' + props.hostname;
 </script>
 
 <style scoped>
@@ -15,6 +11,8 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .feed-list[data-view-mode="row"] .card-footer {
@@ -47,7 +45,7 @@ defineProps<{
 
 <template>
   <div class="card-footer select-none">
-    <a href="https://google.com" target="_blank" class="footer-origin">{{ origin }}</a>
+    <a :href="href" target="_blank" class="footer-origin">{{ hostname }}</a>
     <NuxtTime
       class="footer-date"
       day="2-digit"

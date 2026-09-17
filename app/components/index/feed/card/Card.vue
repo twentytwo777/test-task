@@ -57,6 +57,9 @@ defineProps<{ item: FeedItem }>();
       :title="item.title"
       :subtitle="item.subtitle"
     />
-    <IndexFeedCardFooter origin="mos.ru" :timestamp="item.timestamp" />
+    <IndexFeedCardFooter
+      :hostname="item.hostname"
+      :timestamp="item.timestamp"
+    />
   </div>
 </template>
