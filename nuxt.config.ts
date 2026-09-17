@@ -34,5 +34,10 @@ export default defineNuxtConfig({
       }
     }
   },
+  runtimeConfig: {
+    feed: {
+      limit: 4
+    }
+  },
   compatibilityDate: '2025-07-15',
 });

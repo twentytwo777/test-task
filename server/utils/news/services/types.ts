@@ -1,16 +1,5 @@
+import type Parser from 'rss-parser';
+
 export type Enclosure = {
-    $: {
-        url: string;
-        type: string;
-    };
+  $: Parser.Enclosure;
 };
-
-export type FeedItem = {
-    url: string;
-    cover: string;
-    title: string;
-    subtitle: string;
-    timestamp: number;
-};
-
-export type FeedResult = FeedItem[];
