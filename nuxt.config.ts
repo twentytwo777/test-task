@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/variables.css',
     '~/assets/css/main.css',
+    '~/assets/css/utilities.css',
   ],
   vite: {
     plugins: [

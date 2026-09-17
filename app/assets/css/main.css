@@ -27,13 +27,3 @@ button {
   user-select: none;
   -webkit-user-select: none;
 }
-
-.line-clamp {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.pointer-none {
-  pointer-events: none;
-}

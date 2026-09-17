@@ -1,0 +1,14 @@
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pointer-none {
+  pointer-events: none;
+}
+
+.select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
