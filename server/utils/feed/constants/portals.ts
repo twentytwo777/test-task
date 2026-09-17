@@ -1,4 +1,4 @@
-import type { BaseService } from '~~/server/utils/news/services/base';
+import type { BaseService } from '~~/server/utils/feed/services/base';
 
 type Portal = {
   name: string;

@@ -1,4 +1,4 @@
-import { BaseService } from '~~/server/utils/news/services/base';
+import { BaseService } from '~~/server/utils/feed/services/base';
 
 export class Mos extends BaseService {
   constructor() {
